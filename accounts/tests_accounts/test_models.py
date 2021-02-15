@@ -14,5 +14,13 @@ class TestUserModel(TestCase):
     def test_must_create_new_super_user(self):
         admin = User.objects.create_user(**self.admin_data)
         admin = User.objects.first()
-        self.assertEqual(admin.username, self.admin_data['username'])
-        self.assertEqual(admin.is_superuser, True)
+        self.assertEqual(
+            admin.username,
+            self.admin_data['username'],
+            msg='I was unable to create a new superuser.'
+        )
+        self.assertEqual(
+            admin.is_superuser,
+            True,
+            msg='I was unable to create a new superuser.'
+        )

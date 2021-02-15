@@ -1,30 +1,34 @@
-from django.contrib.auth.models import User 
+from django.contrib.auth.models import User
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import status
 from rest_framework.authtoken.models import Token
-from .serializers import UserSeializer
+from .serializers import UserSerializer
 from django.contrib.auth import authenticate
 
 
 class AccountView(APIView):
     def post(self, request):
-        serializer = UserSeializer(data=request.data)
+        serializer = UserSerializer(data=request.data)
 
         if not serializer.is_valid():
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            return Response(
+                serializer.errors, status=status.HTTP_400_BAD_REQUEST
+            )
 
         user = User.objects.create_user(**request.data)
-        serializer = UserSeializer(user)
+        serializer = UserSerializer(user)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
 class LoginView(APIView):
     def post(self, request):
-        serializer = UserSeializer(data=request.data)
+        serializer = UserSerializer(data=request.data)
 
         if not serializer.is_valid():
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            return Response(
+                serializer.errors, status=status.HTTP_400_BAD_REQUEST
+            )
 
         user = authenticate(
             username=request.data["username"],
@@ -36,6 +40,6 @@ class LoginView(APIView):
             return Response({"token": token.key}, status=status.HTTP_200_OK)
 
         return Response(
-            {"message": "Invalid username or password"}, 
+            {"message": "Invalid username or password"},
             status=status.HTTP_401_UNAUTHORIZED
         )

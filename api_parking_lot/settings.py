@@ -28,7 +28,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework.authtoken',
-    'accounts'
+    'accounts',
+    'levels'
 ]
 
 MIDDLEWARE = [
@@ -66,27 +67,25 @@ WSGI_APPLICATION = 'api_parking_lot.wsgi.application'
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
 DATABASES = {
-  'default': {
-      'ENGINE': 'django.db.backends.postgresql_psycopg2',
-      'NAME': os.environ.get('DB_NAME', 'db_parking_lot'),
-      'USER': os.environ.get('DB_USER', 'admin'),
-      'PASSWORD': os.environ.get('DB_PASS', '98769061'),
-      'HOST': 'localhost',
-      'PORT': '5432',
-  }
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': os.environ.get('DB_NAME', 'db_parking_lot'),
+        'USER': os.environ.get('DB_USER', 'admin'),
+        'PASSWORD': os.environ.get('DB_PASS', '98769061'),
+        'HOST': 'localhost',
+        'PORT': '5432',
+    }
 }
 
 test = os.environ.get('TEST')
 
-if test:    
+if test:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
             'NAME': BASE_DIR / 'db.sqlite3',
         }
     }
-
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
