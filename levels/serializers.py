@@ -11,7 +11,7 @@ class LevelSerializer(serializers.ModelSerializer):
             'fill_priority',
             'available_spots',
             'bike_spots',
-            'car_spots',
+            'car_spots'
         )
         extra_kwargs = {
             'id': {'read_only': True},

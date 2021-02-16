@@ -25,3 +25,8 @@ class LevelView(APIView):
         level = Level.objects.get_or_create(**request.data)[0]
         serializer = LevelSerializer(level)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+    def get(self, request):
+        all_levels = Level.objects.all()
+        serializer = LevelSerializer(all_levels, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
