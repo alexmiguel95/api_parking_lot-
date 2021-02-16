@@ -17,5 +17,5 @@ class TestLevelModel(TestCase):
         self.assertEqual(
             level.name,
             self.level_data['name'],
-            msg='I was unable to create a new superuser.'
+            msg='I was unable to create a new level.'
         )
