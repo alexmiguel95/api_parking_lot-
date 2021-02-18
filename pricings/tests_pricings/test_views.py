@@ -2,7 +2,7 @@ from django.test import TestCase
 from rest_framework.test import APIClient
 
 
-class TestCreateLevel(TestCase):
+class TestCreatePricing(TestCase):
     def setUp(self):
         self.pricing_data = {
             "a_coefficient": 100,

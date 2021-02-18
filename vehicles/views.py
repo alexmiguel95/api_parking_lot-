@@ -6,7 +6,6 @@ from .models import Vehicle
 from .services.check_free_space import check_free_space
 from .services.calculate_payment import get_payment
 from django.core.exceptions import ObjectDoesNotExist
-import ipdb
 
 
 class VehicleView(APIView):

@@ -57,6 +57,52 @@ Response - HTTP Status 200:
 }
 ```
 
+####  POST /api/vehicles/
+> Registrar a entrada de um veículo no estacionamento. Só é possivel registrar um novo veículo desde que ja tenha registrado um ao menos um Level e uma tabela de Pricing no sistema. O sistema vai automaticamente verificar se existe vaga livre em um dos Levels.
+
+Criando um vehicle
+
+Body JSON:
+```json
+{
+	"vehicle_type": "car",
+	"license_plate": "AYO1030"
+}
+```
+Response - HTTP Status 201:
+```json
+{
+  "id": 89,
+  "license_plate": "AYO1030",
+  "vehicle_type": "car",
+  "arrived_at": "2021-02-18T12:32:22.867950Z",
+  "paid_at": null,
+  "amount_paid": null,
+  "spot": {
+    "id": 11,
+    "variety": "car",
+    "level_name": "floor 3"
+  }
+}
+```
+
+####  PUT /api/vehicles/<int:vehicle_id>/
+> Assim que um veíclo é liberado, o sistema atualiza a data de saída(paid_at) e calcula o valor a ser pago(amount_paid) que aqui estamos trabalhando em centavos. O número de vagas de Levels sera atualizado.
+
+Liberarando um vehicle
+
+Response - HTTP Status 200:
+```json
+{
+  "license_plate": "AYO1030",
+  "vehicle_type": "car",
+  "arrived_at": "2021-02-18T11:58:19.472270Z",
+  "paid_at": "2021-02-18T11:59:45.768708Z",
+  "amount_paid": 100,
+  "spot": null
+}
+```
+
 &nbsp;
 ## Endpoints restritos
 Os endpoints a seguir estão disponíveis apenas para usuários com um token de administador. No header, espeficar nesse formato:

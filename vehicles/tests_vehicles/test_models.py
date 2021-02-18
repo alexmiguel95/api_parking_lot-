@@ -1,24 +1,19 @@
 from django.test import TestCase
-from pricings.models import Pricing
+from vehicles.models import Vehicle
 
 
-class TestPrincingModel(TestCase):
+class TestVehicleModel(TestCase):
     def setUp(self):
-        self.pricing_data = {
-            "a_coefficient": 100,
-            "b_coefficient": 100
+        self.vehicle_data = {
+            "vehicle_type": "car",
+            "license_plate": "AYO1030"
         }
 
     def test_must_create_new_princing(self):
-        pricing = Pricing.objects.create(**self.pricing_data)
-        pricing = Pricing.objects.first()
+        vehicle = Vehicle.objects.create(**self.vehicle_data)
+        vehicle = Vehicle.objects.first()
         self.assertEqual(
-            pricing.a_coefficient,
-            self.pricing_data['a_coefficient'],
-            msg='I was unable to create the coefficients.'
-        )
-        self.assertEqual(
-            pricing.b_coefficient,
-            self.pricing_data['b_coefficient'],
-            msg='I was unable to create the coefficients.'
+            vehicle.license_plate,
+            self.vehicle_data['license_plate'],
+            msg='I was unable to create the vehicle.'
         )
