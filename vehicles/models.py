@@ -1,5 +1,5 @@
 from django.db import models
-
+import ipdb
 
 class Vehicle(models.Model):
     vehicle_type = models.CharField("Tipo de veículo", max_length=100)
@@ -15,9 +15,12 @@ class Vehicle(models.Model):
         null=True,
         default=None
     )
+    fk_level = models.IntegerField(null=True, default=None)
 
     @property
     def spot(self):
-        spot = None
+        return self.__spot
 
-        return spot
+    @spot.setter
+    def spot(self, vacancy_data):
+        self.__spot = vacancy_data

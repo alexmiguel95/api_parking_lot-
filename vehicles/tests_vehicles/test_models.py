@@ -1,5 +1,5 @@
 from django.test import TestCase
-from ..models import Pricing
+from pricings.models import Pricing
 
 
 class TestPrincingModel(TestCase):

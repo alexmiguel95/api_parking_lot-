@@ -22,7 +22,7 @@ class LevelView(APIView):
                 status=status.HTTP_400_BAD_REQUEST
             )
 
-        level = Level.objects.get_or_create(**request.data)[0]
+        level = Level.objects.create(**request.data)
         serializer = LevelSerializer(level)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
